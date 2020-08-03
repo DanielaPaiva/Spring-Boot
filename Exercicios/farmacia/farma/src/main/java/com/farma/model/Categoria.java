@@ -13,54 +13,48 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 @Entity
-@Table(name="produto")
-public class Produto {
+@Table(name="categoria")
+public class Categoria {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
 	@NotNull
-	private String nome;
+	private String descricao;
 	
-	private Double preco;
+	private boolean ativo;
 	
-	@OneToMany(mappedBy="produto", cascade=CascadeType.ALL)
-	@JsonIgnoreProperties("produto")
-	private List<Categoria>categoria;
-
+	
+	@OneToMany(mappedBy="categoria", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("categoria")
+	private List<Produto>produto;
+	
 	public long getId() {
 		return id;
 	}
-
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	public String getNome() {
-		return nome;
+	public String getDescricao() {
+		return descricao;
 	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
-
-	public Double getPreco() {
-		return preco;
+	public boolean isAtivo() {
+		return ativo;
 	}
-
-	public void setPreco(Double preco) {
-		this.preco = preco;
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
-
-	public List<Categoria> getCategoria() {
-		return categoria;
+	public List<Produto> getProduto() {
+		return produto;
 	}
-
-	public void setCategoria(List<Categoria> categoria) {
-		this.categoria = categoria;
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
 	}
+	
 
 }
